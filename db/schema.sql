@@ -3,10 +3,11 @@ CREATE DATABASE employee_db;
 
 USE employee_db;
 
-CREATE TABLE roles(
+
+CREATE TABLE employees(
   id INT NOT NULL,
   role_name VARCHAR(30) NOT NULL,
-  department_name VARCHAR(100) NOT NULL,
+  department_name VARCHAR(30) NOT NULL,
   employee_name INT NOT NULL,
   on_duty BOOLEAN
   PRIMARY KEY (id)
@@ -22,6 +23,6 @@ CREATE TABLE staffing_order (
   employee_id INT,
   scheduling_details TEXT,
   FOREIGN KEY (employee_id)
-  REFERENCES roles(id)
+  REFERENCES employees(id)
   ON DELETE SET NULL
 );
