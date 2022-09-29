@@ -9,7 +9,7 @@ CREATE TABLE employees(
   role_name VARCHAR(30) NOT NULL,
   department_name VARCHAR(30) NOT NULL,
   employee_name INT NOT NULL,
-  on_duty BOOLEAN
+  on_duty BOOLEAN,
   PRIMARY KEY (id)
 );
 

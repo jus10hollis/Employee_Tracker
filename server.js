@@ -23,6 +23,7 @@ const fs = require("fs");
 function mainPrompts() {
   inquirer
     .prompt({
+      name: "intro",
       message: "What would you like to do?",
       choices: [
         {
