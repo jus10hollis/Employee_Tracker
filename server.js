@@ -1,14 +1,6 @@
-const express = require("express");
 const inquirer = require("inquirer");
 // Import and require mysql2
 const mysql = require("mysql2");
-
-const PORT = process.env.PORT || 3001;
-const app = express();
-
-// Express middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
 // Connect to database
 const db = mysql.createConnection(
@@ -22,12 +14,33 @@ const db = mysql.createConnection(
 );
 
 // Query the database
-db.query('SELECT * FROM employees', function (err, results) {
+db.query("SELECT * FROM employees", function (err, results) {
   console.log(results);
 });
 
+const fs = require("fs");
 
-
-// Setup command-line prompts
-
-
+function mainPrompts() {
+  inquirer
+    .prompt({
+      message: "What would you like to do?",
+      choices: [
+        {
+          name: "View all employees",
+          value: "viewAll",
+        },
+        {
+          name: "View by department",
+          value: "viewDepartment",
+        },
+        {
+          name: "See who is on duty",
+          value: "viewDuty",
+        },
+      ],
+    })
+    .then((data) => {
+      console.log(data);
+    });
+}
+mainPrompts();
