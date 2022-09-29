@@ -17,22 +17,41 @@ const db = mysql.createConnection(
 
 const fs = require("fs");
 
-async function mainPrompts() {
-  inquirer.prompt({
-    type: "checkbox",
-    name: "intro",
-    message: "What would you like to do?",
-    choices: [
-      "view all departments",
-      "view all roles",
-      "view all employees",
-      "add a department",
-      "add a role",
-      "add an employee",
-      "update an employee role",
-    ],
-  });
-  // if (USER_INPUT === "view all departments") {}
+function mainPrompts() {
+  inquirer
+    .prompt({
+      type: "checkbox",
+      name: "intro",
+      message: "What would you like to do?",
+      choices: [
+        "view all departments",
+        "view all roles",
+        "view all employees",
+        "add a department",
+        "add a role",
+        "add an employee",
+        "update an employee role",
+      ],
+    })
+    .then((answer) => {
+      console.log(answer);
+      if (answer === "view all departments") {
+        function viewAllDepartments() {
+          db.query("SELECT * FROM departments", (err, result) => {
+            if (err) {
+              console.log(err);
+            }
+            console.log(result + "department");
+            mainPrompts();
+          });
+        }
+        viewAllDepartments();
+      }
+    });
+
+  // if (USER_INPUT === "view all departments") {
+  //   const departmentView = db.connect("employee_db");
+  //   console.table(departmentView);
 
   // const departmentView = await db.execute("SELECT * FROM departments");
   // console.table(departmentView);

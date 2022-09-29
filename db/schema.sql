@@ -8,7 +8,7 @@ CREATE TABLE employees(
   id INT NOT NULL,
   role_name VARCHAR(30) NOT NULL,
   department_name VARCHAR(30) NOT NULL,
-  employee_name INT NOT NULL,
+  employee_name VARCHAR(50) NOT NULL,
   on_duty BOOLEAN,
   PRIMARY KEY (id)
 );
@@ -19,7 +19,7 @@ CREATE TABLE departments(
 );
 
 CREATE TABLE staffing_order (
-  id INT,
+  id INT NOT NULL,
   employee_id INT,
   scheduling_details TEXT,
   FOREIGN KEY (employee_id)
