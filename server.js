@@ -14,34 +14,42 @@ const db = mysql.createConnection(
 );
 
 // Query the database
-db.query("SELECT * FROM employees", function (err, results) {
-  console.log(results);
-});
 
 const fs = require("fs");
 
-function mainPrompts() {
-  inquirer
-    .prompt({
-      name: "intro",
-      message: "What would you like to do?",
-      choices: [
-        {
-          name: "View all employees",
-          value: "viewAll",
-        },
-        {
-          name: "View by department",
-          value: "viewDepartment",
-        },
-        {
-          name: "See who is on duty",
-          value: "viewDuty",
-        },
-      ],
-    })
-    .then((data) => {
-      console.log(data);
-    });
+async function mainPrompts() {
+  inquirer.prompt({
+    type: "checkbox",
+    name: "intro",
+    message: "What would you like to do?",
+    choices: [
+      "view all departments",
+      "view all roles",
+      "view all employees",
+      "add a department",
+      "add a role",
+      "add an employee",
+      "update an employee role",
+    ],
+  });
+  // if (USER_INPUT === "view all departments") {}
+
+  // const departmentView = await db.execute("SELECT * FROM departments");
+  // console.table(departmentView);
 }
+//   else if (USER_INPUT === "view all roles") {
+//     return console.table(data);
+//   } else if (USER_INPUT() === "view all employees") {
+//     return console.table(data);
+//   } else if (USER_INPUT() === "add a department") {
+//     return console.table(data);
+//   } else if (USER_INPUT() === "add a role") {
+//     return console.table(data);
+//   } else if (USER_INPUT() === "add an employee") {
+//     return console.table(data);
+//   } else if (USER_INPUT() === "update an employee role") {
+//     return console.table(data);
+//   } else console.log(data);
+// });
+
 mainPrompts();
